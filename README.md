@@ -1,4 +1,4 @@
-freelancer
+Freelancer
 ==========
 
-Make your business more easy. Invoices, Tickets and more!
+Management of its business as "Freelancer or Employer". Bills, Tickets, HowTo's and much more.
