@@ -28,7 +28,7 @@
  * Plugin Name:       	Freelancer
  * Plugin URI:        	http://nunoapps.com/plugins/freelancer
  * Description:       	Make your business more easy. Invoices, Tickets and more!.
- * Version:           	0.0.1
+ * Version:           	0.3.1
  * Author:            	Pereira Pulido Nuno Ricardo
  * Author URI:        	http://namaless.com
  * Text Domain:       	freelancer
@@ -43,18 +43,11 @@
  */
 class Freelancer {
 
-    private static $instance;
-
-    public static function instance() {
-
-        if ( ! self::$instance )
-            self::$instance = new self;
-
-        return self::$instance;
-
-    }
-
     public function __construct() {
+
+        global $freelancer;
+
+        $freelancer = new stdClass;
 
         add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
@@ -97,22 +90,22 @@ class Freelancer {
 
     public function includes() {
 
-        /* Include frontend files. */
-        require_once( FREELANCER_DIR . 'includes/core.php' );
-        require_once( FREELANCER_DIR . 'includes/settings.php' );
-        require_once( FREELANCER_DIR . 'includes/post-types.php' );
-        require_once( FREELANCER_DIR . 'includes/taxonomies.php' );
-        require_once( FREELANCER_DIR . 'includes/user-meta.php' );
-        require_once( FREELANCER_DIR . 'includes/template.php' );
+		/* Include frontend files. */
+		require_once( FREELANCER_DIR . 'includes/core.php' );
+		require_once( FREELANCER_DIR . 'includes/settings.php' );
+		require_once( FREELANCER_DIR . 'includes/post-types.php' );
+		require_once( FREELANCER_DIR . 'includes/taxonomies.php' );
+		require_once( FREELANCER_DIR . 'includes/user-meta.php' );
+		require_once( FREELANCER_DIR . 'includes/post-meta.php' );
+		require_once( FREELANCER_DIR . 'includes/template.php' );
 
         /* Include admin files. */
         if ( is_admin() ) {
 
             // include admin files
-            require_once( FREELANCER_DIR . 'admin/class-freelancer-admin.php' );
-            require_once( FREELANCER_DIR . 'admin/class-freelancer-admin-settings.php' );
-            require_once( FREELANCER_DIR . 'admin/class-freelancer-admin-post-type.php' );
-            require_once( FREELANCER_DIR . 'admin/class-freelancer-admin-post-type-invoice.php' );
+            require_once( FREELANCER_DIR . 'admin/admin.php' );
+            require_once( FREELANCER_DIR . 'admin/settings.php' );
+            require_once( FREELANCER_DIR . 'admin/users.php' );
 
         }
 
@@ -120,9 +113,11 @@ class Freelancer {
 
     public static function activation() {
 
+        /*
         require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'freelancer-install.php' );
 
         freelancer_install();
+        */
 
         $role = get_role( 'administrator' );
 
@@ -149,4 +144,4 @@ class Freelancer {
 }
 
 /* Init main class. */
-Freelancer::instance();
+new Freelancer();

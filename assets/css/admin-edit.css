@@ -1,0 +1,11 @@
+.edit-php .wp-list-table td.thumbnail.column-invoice_total,
+.edit-php .wp-list-table th.manage-column.column-invoice_total { 
+	text-align: center; 
+	width: 120px; 
+}
+
+.edit-php .wp-list-table td.thumbnail.column-invoice_id,
+.edit-php .wp-list-table th.manage-column.column-invoice_id { 
+	text-align: center; 
+	width: 50px; 
+}

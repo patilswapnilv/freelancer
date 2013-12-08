@@ -1,13 +1,15 @@
 <?php
 
 /**
- * Userdata for billing / invoicing feature.
+ * User meta functions for the plugin.
  *
- * @package    	Freelancer/Includes/UserMeta
- * @since      	0.2.3
+ * @package 	Freelancer
+ * @subpackage 	Includes
+ * @since      	0.0.1
  * @author     	Pulido Pereira Nuno Ricardo <pereira@nunoapps.com>
+ * @copyright  	Copyright (c) 2007 - 2013, Pulido Pereira Nuno Ricardo
  * @link       	http://nunoapps.com/plugins/freelancer
- * @license   	GPL-2.0+
+ * @license    	http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /**
@@ -53,15 +55,25 @@ function freelancer_get_default_user_metas() {
  */
 function freelancer_get_user_metas( $user_id ) {
 
-	$default_user_metas = freelancer_get_default_user_metas();
+	global $freelancer;
 
-	foreach ( $default_user_metas as $key => $value ) {
+	if ( ! isset( $freelancer->user_metas ) || ! isset( $freelancer->user_metas[ $user_id ] ) ) {
 
-		$user_meta[ $key ] = freelancer_get_user_meta( $key, $user_id );
+		$default_user_metas = freelancer_get_default_user_metas();
+
+		$user_metas = array();
+
+		foreach ( $default_user_metas as $key => $value ) {
+
+			$user_metas[ $key ] = freelancer_get_user_meta( $key, $user_id );
+
+		}
+
+		$freelancer->user_metas[ $user_id ] = $user_metas;
 
 	}
 
-	return $user_meta;
+	return $freelancer->user_metas[ $user_id ];
 
 }
 
@@ -74,11 +86,14 @@ function freelancer_get_user_metas( $user_id ) {
  * @param 	int 	User ID.
  * @return 	mixed 	User meta value.
  */
-function freelancer_get_user_meta( $user_meta_key, $user_id ) {
+function freelancer_get_user_meta( $user_id, $user_meta_key ) {
 
-	$user_meta = get_the_author_meta( 'freelancer_' . $user_meta_key, $user_id );
+	global $freelancer;
 
-	return ( $user_meta ) ? $user_meta : '';
+	if ( ! isset( $freelancer->user_metas[ $user_id ] ) || ! isset( $freelancer->user_metas[ $user_id ][ $user_meta_key ] ) )
+		$freelancer->user_metas[ $user_id ][ $user_meta_key ] = get_the_author_meta( 'freelancer_' . $user_meta_key, $user_id );
+
+	return $freelancer->user_metas[ $user_id ][ $user_meta_key ];
 
 }
 
@@ -114,14 +129,14 @@ function nunoapps_freelancer_user_registration_fields() {
 	</p>
 
 	<p>
-		<label for="freelancer_user_meta[business_address]"><?php _e( 'Business Address', 'freelancer' ) ?>
+		<label for="freelancer_user_meta-business_address"><?php _e( 'Business Address', 'freelancer' ) ?>
 			<br />
 			<input type="text" name="freelancer_user_meta[business_address]" id="freelancer_user_meta-business_address" class="input" value="<?php echo esc_attr( stripslashes( $user_meta['business_address'] ) ); ?>" size="20" />
 		</label>
 	</p>
 
 	<p>
-		<label for="freelancer_user_meta[business_city]"><?php _e( 'Business City', 'freelancer' ) ?>
+		<label for="freelancer_user_meta-business_city"><?php _e( 'Business City', 'freelancer' ) ?>
 			<br />
 			<input type="text" name="freelancer_user_meta[business_city]" id="freelancer_user_meta-business_city" class="input" value="<?php echo esc_attr( stripslashes( $user_meta['business_city'] ) ); ?>" size="20" />
 		</label>
