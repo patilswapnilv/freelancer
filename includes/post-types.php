@@ -12,15 +12,6 @@
  * @license    	http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-/* Register custom post types on the 'init' hook. */
-add_action( 'init', 'freelancer_register_post_types' );
-
-/* Filter post updated messages for custom post types. */
-add_filter( 'post_updated_messages', 'freelancer_post_updated_messages' );
-
-/* Filter the "enter title here" text. */
-add_filter( 'enter_title_here', 'freelancer_enter_title_here', 10, 2 );
-
 /**
  * Register post types.
  *
@@ -98,6 +89,9 @@ function freelancer_register_post_types() {
 
 }
 
+/* Register custom post types on the 'init' hook. */
+add_action( 'init', 'freelancer_register_post_types' );
+
 /**
  * Edit "enter title here" message for post types.
  *
@@ -116,6 +110,9 @@ function freelancer_enter_title_here( $title, $post ) {
 	return $title;
 
 }
+
+/* Filter the "enter title here" text. */
+add_filter( 'enter_title_here', 'freelancer_enter_title_here', 10, 2 );
 
 /**
  * Update messages for post types.
@@ -149,3 +146,6 @@ function freelancer_post_updated_messages( $messages ) {
 	return $messages;
 
 }
+
+/* Filter post updated messages for custom post types. */
+add_filter( 'post_updated_messages', 'freelancer_post_updated_messages' );
