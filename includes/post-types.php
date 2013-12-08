@@ -109,7 +109,7 @@ function freelancer_register_post_types() {
  */
 function freelancer_enter_title_here( $title, $post ) {
 
-	if ( $post->post_type == 'invoice' ) {
+	if ( 'invoice' === $post->post_type ) {
 		return __( 'Enter invoice title here', 'freelancer' );
 	}
 
