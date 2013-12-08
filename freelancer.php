@@ -38,9 +38,6 @@
  * GitHub Plugin URI: 	https://github.com/nunoapps/freelancer
  */
 
-/**
- * Freelancer Main Class.
- */
 class Freelancer {
 
     public function __construct() {
@@ -49,10 +46,13 @@ class Freelancer {
 
         $freelancer = new stdClass;
 
+        /* Set the constants needed by the plugin. */
         add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
+        /* Internationalize the text strings used. */
         add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
 
+        /* Load the plugin files. */
         add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
 
         /* Register activation hook. */
