@@ -23,8 +23,11 @@ function freelancer_admin_setup() {
 	add_action( 'add_meta_boxes', 'freelancer_add_meta_boxes' );
 	add_action( 'save_post', 'freelancer_save_post', 10, 2 );
 
-	/* Load admin head scripts and styles. */
+	/* Load admin head for styles. */
 	add_action( 'admin_head', 'freelancer_admin_head' );
+
+	/* Load admin footer for scripts. */
+	add_action( 'admin_footer', 'freelancer_admin_footer' );
 
 	/* Load on edit post the post types. */
 	add_action( 'load-edit.php', 'freelancer_load_edit_post' );
@@ -114,6 +117,23 @@ function freelancer_admin_head() {
 
 		case 'invoice':
 			freelancer_invoice_admin_head();
+		break;
+
+		default:
+		break;
+
+	}
+
+}
+
+function freelancer_admin_footer() {
+
+	$screen = get_current_screen();
+
+	switch ( $screen->post_type ) {
+
+		case 'invoice':
+			freelancer_invoice_admin_footer();
 		break;
 
 		default:

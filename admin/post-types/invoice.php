@@ -582,19 +582,35 @@ function freelancer_invoice_manage_edit_sortable_columns( $columns ) {
 
 }
 
+/**
+ * Load admin styles in head.
+ *
+ * @access 	public
+ * @since 	0.0.1
+ * @return 	void
+ */
 function freelancer_invoice_admin_head() {
 
 	$screen = get_current_screen();
-
-	if ( 'post' === $screen->base )
-		wp_enqueue_script( 'jquery-format_currency', FREELANCER_URI . 'assets/js/jquery.formatCurrency-1.4.0.min.js', array(), FREELANCER_VERSION, true );
-
 
 	if ( 'edit' === $screen->base )
 		wp_enqueue_style( 'freelancer-admin-edit', FREELANCER_URI . 'assets/css/admin-edit.css', false, FREELANCER_VERSION, 'screen' );
 
 }
 
+/**
+ * Load admin scripts in footer.
+ *
+ * @access 	public
+ * @since 	0.0.1
+ * @return 	void
+ */
+function freelancer_invoice_admin_footer() {
 
+	$screen = get_current_screen();
+
+	if ( 'post' === $screen->base )
+		wp_enqueue_script( 'jquery-format_currency', FREELANCER_URI . 'assets/js/jquery.formatCurrency-1.4.0.min.js', array(), FREELANCER_VERSION, true );
+}
 
 
