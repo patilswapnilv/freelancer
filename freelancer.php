@@ -66,7 +66,7 @@ class Freelancer {
     public function constants() {
 
         /* Set the version number of the plugin. */
-        define( 'FREELANCER_VERSION', '0.3.0' );
+        define( 'FREELANCER_VERSION', '0.3.1' );
 
         /* Set the database version number of the plugin. */
         define( 'FREELANCER_DB_VERSION', 1 );
