@@ -28,7 +28,7 @@
  * Plugin Name:       	Freelancer
  * Plugin URI:        	http://nunoapps.com/plugins/freelancer
  * Description:       	Make your business more easy. Invoices, Tickets and more!.
- * Version:           	0.3.1
+ * Version:           	0.3.3
  * Author:            	Pereira Pulido Nuno Ricardo
  * Author URI:        	http://namaless.com
  * Text Domain:       	freelancer
@@ -66,7 +66,7 @@ class Freelancer {
     public function constants() {
 
         /* Set the version number of the plugin. */
-        define( 'FREELANCER_VERSION', '0.3.1' );
+        define( 'FREELANCER_VERSION', '0.3.3' );
 
         /* Set the database version number of the plugin. */
         define( 'FREELANCER_DB_VERSION', 1 );
