@@ -20,6 +20,7 @@ Quick access to all of your projects. See which items need your attention first 
 Adding new tasks is as simple as typing a note. Just click enter to add a new task. Each task will be handled in a simple way thanks to WordPress and the plugin Freelancer. You want to create a simple, fast and effective at the same time.
 
 Other features:
+
 * Multiple filter options
 * Search
 * Drag & drop reordering
